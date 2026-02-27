@@ -1,25 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DPortfolio</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header>
-      <h1>DPortfolio</h1>
-      <p>Welcome to my portfolio website.</p>
-    </header>
-    <main>
-      <section id="about">
-        <h2>About Me</h2>
-        <p>Hi, I'm Durdan. This is my personal portfolio.</p>
-      </section>
-    </main>
-    <footer>
-      <p>&copy; 2024 DPortfolio</p>
-    </footer>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Durdanta Halder | Civil Engineering & Computational Analytics</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
-  </body>
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <div id="crosshair-x" class="cursor-line"></div>
+    <div id="crosshair-y" class="cursor-line"></div>
+    <div id="hud-coordinates" class="mono-text">
+        <span class="hud-label">E:</span><span id="coord-x">000.0</span><br>
+        <span class="hud-label">N:</span><span id="coord-y">000.0</span>
+    </div>
+
+    <main class="smooth-scroll-wrapper flex-column">
+        
+        <section class="hero flex-center">
+            <div class="glass-panel text-center">
+                <h1 class="tech-heading">DURDANTA HALDER</h1>
+                <h2 class="sub-heading">Civil Engineering // Computational Analytics</h2>
+                <p class="mono-text accent-color">Bipradas Pal Chowdhury Institute of Technology | 2025</p>
+                <div class="hero-skills flex-row">
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">AutoCAD</span>
+                    <span class="skill-badge">Revit</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="bento-section">
+            <h2 class="section-title">Technical Competencies & Tools</h2>
+            <div class="bento-grid">
+                
+                <div class="bento-item span-6-col span-2-row glass-panel hover-glow">
+                    <h3>Core Engineering Concepts</h3>
+                    <div class="flex-column gap-small">
+                        <div class="concept-item">Safety Engineering</div>
+                        <div class="concept-item">Environmental Engineering</div>
+                        <div class="concept-item">Public Health Engineering</div>
+                        <div class="concept-item">Project Management</div>
+                        <div class="concept-item">Construction Management</div>
+                    </div>
+                </div>
+
+                <div class="bento-item span-3-col glass-panel hover-tilt">
+                    <h3 class="bento-title">Surveying Equipment</h3>
+                    <ul class="clean-list mono-text">
+                        <li>Total Station</li>
+                        <li>Theodolite</li>
+                        <li>Laser Distance Measurer</li>
+                    </ul>
+                </div>
+
+                <div class="bento-item span-3-col glass-panel hover-tilt">
+                    <h3 class="bento-title">Material Diagnostics</h3>
+                    <ul class="clean-list mono-text">
+                        <li>Concrete Testing Machine (CTM)</li>
+                        <li>Rebound Hammer</li>
+                        <li>Slump Cone</li>
+                        <li>Hydrological Equipment</li>
+                    </ul>
+                </div>
+
+                <div class="bento-item span-6-col glass-panel highlight-border">
+                    <h3 class="bento-title">Computational Processing</h3>
+                    <p class="body-text">Proficient in <strong>Python</strong> with a focus on biological data analysis and big data handling. Utilizes <strong>JavaScript</strong> for data processing, scripting, and automating complex analytical tasks.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="horizontal-wrapper">
+            <h2 class="section-title sticky-title">Project Experience Timeline</h2>
+            <div class="horizontal-container flex-row">
+                
+                <div class="project-panel glass-panel flex-column">
+                    <div class="project-header">
+                        <span class="project-date mono-text">2023 - 2024</span>
+                        <h3>Field Operations & Inspections</h3>
+                    </div>
+                    <div class="project-body">
+                        <h4>Amghata-Krishnanagar Railway Track</h4>
+                        <p>Inspected track conditions, including alignment, leveling, ballast, sleepers, and rails under site engineer guidance. Studied rail specifications and manufacturing processes.</p>
+                        <h4>Mother's Hut Restaurant Project</h4>
+                        <p>Observed modern construction techniques prioritizing durability and aesthetic appeal. Analyzed the implementation of stringent safety standards and PPE utilization.</p>
+                    </div>
+                </div>
+
+                <div class="project-panel glass-panel flex-column">
+                    <div class="project-header">
+                        <span class="project-date mono-text">April 2024</span>
+                        <h3>Planning of G+2 Residential Building</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Conducted extensive site analysis and surveys to gather essential data on topography, soil conditions, and environmental factors. Developed detailed architectural drawings including floor plans, elevations, and sections using AutoCAD.</p>
+                        <div class="svg-container">
+                            <svg class="blueprint-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                                <path class="draw-path" d="M10,90 L10,10 L50,10 L50,90 Z M50,10 L90,10 L90,90 L50,90 M10,50 L90,50 M30,10 L30,90 M70,10 L70,90" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-panel glass-panel flex-column">
+                    <div class="project-header">
+                        <span class="project-date mono-text">November 2024</span>
+                        <h3>G+2 Residential Complex for MIG</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Designed a comprehensive Middle-Income Group complex. Conducted thorough geotechnical investigations and environmental impact assessments. Developed architectural plans using advanced CAD software.</p>
+                        <p>Designed structural frameworks and load-bearing elements ensuring safety and compliance with building regulations. Incorporated cost-effective and sustainable building materials.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="interactive-tool flex-center">
+            <h2 class="section-title">Computational Engineering Demo</h2>
+            <div class="glass-panel calculator-wrapper flex-column">
+                <div class="calc-header">
+                    <h3>Interactive Beam Deflection Simulator</h3>
+                    <p class="mono-text sub-text">// Built with Vanilla JS to demonstrate analytical automation.</p>
+                </div>
+                <div class="calc-inputs flex-row wrap-mobile">
+                    <div class="input-group flex-column">
+                        <label for="beam-load" class="mono-text">Point Load (kN):</label>
+                        <input type="number" id="beam-load" value="50" min="1" step="1">
+                    </div>
+                    <div class="input-group flex-column">
+                        <label for="beam-span" class="mono-text">Span Length (m):</label>
+                        <input type="number" id="beam-span" value="10" min="1" step="0.5">
+                    </div>
+                    <button id="calc-btn" class="tech-btn">Compute Deflection</button>
+                </div>
+                <div class="calc-output">
+                    <span class="mono-text">> Output: </span>
+                    <span id="calc-result" class="mono-text result-display">Awaiting input parameters...</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <script src="script.js"></script>
+</body>
 </html>
