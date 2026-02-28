@@ -5,7 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. Digital Total Station Cursor [span_81](start_span)[span_81](end_span)[span_82](start_span)[span_82](end_span) ---
+    // --- 1. Digital Total Station Cursor [3, 31] ---
     const crossX = document.getElementById('crosshair-x');
     const crossY = document.getElementById('crosshair-y');
     const hud = document.getElementById('hud-coordinates');
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. SVG Blueprint Drawing on Scroll  ---
     const paths = document.querySelectorAll('.draw-path');
 
-    // I[span_60](start_span)[span_60](end_span)[span_63](start_span)[span_63](end_span)nitialize paths by calculating exact geometric length
+    // Initialize paths by calculating exact geometric length
     paths.forEach(path => {
         const length = path.getTotalLength();
         path.style.strokeDasharray = length;
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. Horizontal Scroll Mechanics  ---
     // Translates vertical wheel scrolling into horizontal container scrolling
-    const horizontalSection = document.querySelecto[span_43](start_span)[span_43](end_span)[span_45](start_span)[span_45](end_span)r('.horizontal-wrapper');
+    const horizontalSection = document.querySelector('.horizontal-wrapper');
     const horizontalContainer = document.querySelector('.horizontal-container');
 
     if (horizontalSection && window.innerWidth > 768) {
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: false });
     }
 
-    // --- 4. Interactive Structural Calculator (JavaScript Engineering Demo) [span_83](start_span)[span_83](end_span)[span_84](start_span)[span_84](end_span)[span_85](start_span)[span_85](end_span) ---
+    // --- 4. Interactive Structural Calculator (JavaScript Engineering Demo) [7, 12, 36] ---
     const calcBtn = document.getElementById('calc-btn');
     const resultDisplay = document.getElementById('calc-result');
     const outputContainer = document.querySelector('.calc-output');
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- 5. Generative Topographical Network Background (p5.js) [span_86](start_span)[span_86](end_span)[span_87](start_span)[span_87](end_span) ---
+// --- 5. Generative Topographical Network Background (p5.js) [8, 37] ---
 // This standalone function leverages the globally included p5 library
 function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
