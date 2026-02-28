@@ -33,7 +33,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     
-    /* Intricate Blueprint Grid Pattern generated purely with CSS [span_74](start_span)[span_74](end_span) */
+    /* Intricate Blueprint Grid Pattern generated purely with CSS [5] */
     background-image: 
         linear-gradient(var(--glass-border) 1px, transparent 1px),
         linear-gradient(90deg, var(--glass-border) 1px, transparent 1px),
@@ -111,7 +111,7 @@ h1, h2, h3, h4 {
     background: var(--glass-bg);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    bord[span_20](start_span)[span_20](end_span)[span_22](start_span)[span_22](end_span)er: 1px solid var(--glass-border);
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
     box-shadow: 0 8px 32px 0 var(--glass-shadow);
     padding: var(--spacing-lg);
@@ -134,7 +134,7 @@ h1, h2, h3, h4 {
 /* --- Bento Grid System  --- */
 .bento-section { padding: var(--spacing-xl) 5vw; max-width: 1400px; margin: 0 auto; }
 .bento-grid {
-    displa[span_34](start_span)[span_34](end_span)[span_36](start_span)[span_36](end_span)y: grid;
+    display: grid;
     gap: var(--spacing-md);
     grid-template-columns: repeat(12, 1fr);
     grid-auto-rows: minmax(200px, auto);
@@ -175,7 +175,7 @@ h1, h2, h3, h4 {
    .span-2-row { grid-row: span 1; }
 }
 
-/* --- Horizontal Scroll Timelines [span_75](start_span)[span_75](end_span)[span_76](start_span)[span_76](end_span) --- */
+/* --- Horizontal Scroll Timelines [26, 28] --- */
 .horizontal-wrapper { 
     height: 100vh; 
     position: relative; 
@@ -260,7 +260,7 @@ h1, h2, h3, h4 {
 .cursor-line {
     position: fixed;
     background-color: var(--accent-red);
-[span_49](start_span)[span_49](end_span)    pointer-events: none; /* Prevents cursor from blocking clicks */
+    pointer-events: none; /* Prevents cursor from blocking clicks */
     z-index: 9998;
     opacity: 0.5;
 }
@@ -288,7 +288,7 @@ h1, h2, h3, h4 {
 }
 
 /* --- SVG Blueprint Animation  --- */
-.svg-container { width: 100%; max-width: 40[span_59](start_span)[span_59](end_span)[span_62](start_span)[span_62](end_span)0px; margin: 2rem auto 0; }
+.svg-container { width: 100%; max-width: 400px; margin: 2rem auto 0; }
 .blueprint-svg { 
     width: 100%; 
     height: auto; 
@@ -315,4 +315,3 @@ h1, h2, h3, h4 {
     opacity: 0.4;
     pointer-events: none;
 }
-
