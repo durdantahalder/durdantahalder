@@ -99,9 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const atStart = horizontalContainer.scrollLeft === 0 && e.deltaY < 0;
             const atEnd = horizontalContainer.scrollLeft >= (horizontalContainer.scrollWidth - horizontalContainer.clientWidth) && e.deltaY > 0;
             
-            if (atStart |
-
-| atEnd) {
+            if (atStart || atEnd) {
                 window.scrollBy(0, e.deltaY);
             }
         }, { passive: false });
@@ -118,11 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const spanInput = parseFloat(document.getElementById('beam-span').value);
             
             // Input Validation
-            if (isNaN(loadInput) |
-
-| isNaN(spanInput) |
-| loadInput <= 0 |
-| spanInput <= 0) {
+            if (isNaN(loadInput) || isNaN(spanInput) || loadInput <= 0 || spanInput <= 0) {
                 resultDisplay.innerText = "ERR: Invalid Parameters. Require positive numerical inputs.";
                 outputContainer.style.borderLeftColor = "var(--accent-red)";
                 return;
@@ -165,7 +159,7 @@ function setup() {
 }
 
 // Generate an array of nodes representing survey points
-let nodes =;
+let nodes = [];
 for (let i = 0; i < 100; i++) {
     nodes.push({
         x: Math.random() * window.innerWidth,
