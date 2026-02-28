@@ -33,7 +33,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     
-    /* Intricate Blueprint Grid Pattern generated purely with CSS [span_74](start_span)[span_74](end_span) */
+    /* Intricate Blueprint Grid Pattern generated purely with CSS */
     background-image: 
         linear-gradient(var(--glass-border) 1px, transparent 1px),
         linear-gradient(90deg, var(--glass-border) 1px, transparent 1px),
@@ -43,7 +43,7 @@ body {
     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
 
-/* --- Typography Systems --- */
+/* --- Typography Systems (Fluid via clamp()) --- */
 h1, h2, h3, h4 { 
     font-family: var(--font-heading); 
     text-transform: uppercase; 
@@ -51,8 +51,9 @@ h1, h2, h3, h4 {
     font-weight: 700;
 }
 
+/* FIX 2: All headings and body text now use clamp() for fluid scaling */
 .tech-heading { 
-    font-size: clamp(3rem, 8vw, 6rem); 
+    font-size: clamp(2rem, 8vw, 6rem); 
     color: var(--text-primary); 
     text-shadow: 0 0 15px rgba(244,244,244,0.2); 
     line-height: 1.1;
@@ -60,14 +61,14 @@ h1, h2, h3, h4 {
 }
 
 .sub-heading { 
-    font-size: clamp(1.2rem, 3vw, 2rem); 
+    font-size: clamp(1rem, 3vw, 2rem); 
     color: var(--accent-red); 
     margin-bottom: var(--spacing-md); 
     font-weight: 400;
 }
 
 .section-title {
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
     margin-bottom: var(--spacing-lg);
     text-align: center;
     position: relative;
@@ -82,10 +83,10 @@ h1, h2, h3, h4 {
     margin: var(--spacing-sm) auto 0;
 }
 
-.mono-text { font-family: var(--font-mono); font-size: 0.9rem; }
-.body-text { font-size: 1.1rem; color: var(--text-secondary); }
+.mono-text { font-family: var(--font-mono); font-size: clamp(0.75rem, 1.5vw, 0.9rem); }
+.body-text { font-size: clamp(0.9rem, 1.8vw, 1.1rem); color: var(--text-secondary); }
 .accent-color { color: var(--accent-red); }
-.sub-text { color: var(--text-secondary); font-size: 0.8rem; }
+.sub-text { color: var(--text-secondary); font-size: clamp(0.7rem, 1.2vw, 0.8rem); }
 .text-center { text-align: center; }
 
 /* --- Flexbox Layout Utility Classes --- */
@@ -97,7 +98,7 @@ h1, h2, h3, h4 {
     align-items: center; 
     justify-content: center; 
     min-height: 100vh; 
-    padding: var(--spacing-lg); 
+    padding: var(--spacing-lg) 5vw; 
 }
 .gap-small { gap: var(--spacing-sm); }
 
@@ -106,12 +107,34 @@ h1, h2, h3, h4 {
    .wrap-mobile { flex-direction: column; align-items: stretch; }
 }
 
-/* --- Glassmorphism Framework  --- */
+/* --- Hero Section --- */
+.hero .glass-panel {
+    width: min(90vw, 760px);
+}
+
+.hero-skills {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--spacing-md);
+}
+
+.skill-badge {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--accent-red);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+    white-space: nowrap;
+}
+
+/* --- Glassmorphism Framework --- */
 .glass-panel {
     background: var(--glass-bg);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    bord[span_20](start_span)[span_20](end_span)[span_22](start_span)[span_22](end_span)er: 1px solid var(--glass-border);
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
     box-shadow: 0 8px 32px 0 var(--glass-shadow);
     padding: var(--spacing-lg);
@@ -131,22 +154,58 @@ h1, h2, h3, h4 {
 .hover-tilt { transform-style: preserve-3d; perspective: 1000px; }
 .hover-tilt:hover { transform: translateY(-10px) rotateX(5deg) rotateY(-5deg); }
 
-/* --- Bento Grid System  --- */
-.bento-section { padding: var(--spacing-xl) 5vw; max-width: 1400px; margin: 0 auto; }
+/* --- FIX 1: Bento Grid System with dense auto-flow --- */
+.bento-section { 
+    padding: var(--spacing-xl) 5vw; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    width: 100%;
+}
+
 .bento-grid {
-    displa[span_34](start_span)[span_34](end_span)[span_36](start_span)[span_36](end_span)y: grid;
+    display: grid;
     gap: var(--spacing-md);
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: minmax(200px, auto);
+    /* Mobile-first: single column */
+    grid-template-columns: 1fr;
+    /* dense packing fills any empty holes automatically */
     grid-auto-flow: dense;
+    grid-auto-rows: minmax(160px, auto);
+}
+
+/* Medium screens: 6-column grid */
+@media (min-width: 640px) {
+    .bento-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .span-6-col { grid-column: span 6; }
+    .span-3-col { grid-column: span 3; }
+    .span-2-row { grid-row: span 2; }
+}
+
+/* Large screens: full 12-column grid */
+@media (min-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: minmax(200px, auto);
+    }
+    .span-6-col { grid-column: span 6; }
+    .span-3-col { grid-column: span 3; }
+    .span-2-row { grid-row: span 2; }
+}
+
+/* Mobile: all items full-width, single row height */
+@media (max-width: 639px) {
+    .span-6-col,
+    .span-3-col { grid-column: span 1; }
+    .span-2-row { grid-row: span 1; }
 }
 
 .bento-item { display: flex; flex-direction: column; justify-content: space-between; }
-.bento-title { margin-bottom: var(--spacing-sm); color: var(--text-primary); }
-
-.span-6-col { grid-column: span 6; }
-.span-3-col { grid-column: span 3; }
-.span-2-row { grid-row: span 2; }
+.bento-title { 
+    margin-bottom: var(--spacing-sm); 
+    color: var(--text-primary);
+    font-size: clamp(1rem, 2vw, 1.4rem);
+}
 
 .clean-list { list-style: none; padding-left: 0; }
 .clean-list li { 
@@ -162,20 +221,12 @@ h1, h2, h3, h4 {
     border-radius: 6px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
     transition: background 0.3s ease;
 }
 .concept-item:hover { background: rgba(229, 33, 101, 0.2); color: var(--text-primary); }
 
-/* Responsive Grid Adjustments */
-@media (max-width: 1024px) {
-   .span-3-col { grid-column: span 6; }
-}
-@media (max-width: 768px) {
-   .span-6-col,.span-3-col { grid-column: span 12; }
-   .span-2-row { grid-row: span 1; }
-}
-
-/* --- Horizontal Scroll Timelines [span_75](start_span)[span_75](end_span)[span_76](start_span)[span_76](end_span) --- */
+/* --- Horizontal Scroll Timelines --- */
 .horizontal-wrapper { 
     height: 100vh; 
     position: relative; 
@@ -194,29 +245,49 @@ h1, h2, h3, h4 {
 }
 
 .project-panel { 
-    width: 60vw; 
-    max-width: 800px;
-    min-width: 320px; 
+    /* FIX 4: Relative sizing — no fixed pixel widths */
+    width: clamp(280px, 60vw, 800px);
+    min-width: 280px; 
     height: 60vh;
     justify-content: flex-start;
 }
 
 .project-header { margin-bottom: var(--spacing-md); border-bottom: 2px solid var(--glass-border); padding-bottom: var(--spacing-sm); }
 .project-date { color: var(--accent-red); font-weight: 700; display: block; margin-bottom: 0.2rem; }
-.project-body p { margin-bottom: 1rem; color: var(--text-secondary); }
-.project-body h4 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; color: var(--text-primary); }
+.project-body p { margin-bottom: 1rem; color: var(--text-secondary); font-size: clamp(0.85rem, 1.6vw, 1rem); }
+.project-body h4 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: clamp(0.9rem, 1.8vw, 1.1rem); color: var(--text-primary); }
 
 @media (max-width: 768px) {
     /* Degrade gracefully to vertical stack on mobile */
-   .horizontal-wrapper { height: auto; overflow: visible; display: block; }
+   .horizontal-wrapper { height: auto; overflow: visible; display: block; padding: var(--spacing-lg) 5vw; }
    .horizontal-container { flex-direction: column; width: 100%; gap: var(--spacing-lg); padding-top: 0; }
-   .project-panel { width: 100%; height: auto; }
+   .project-panel { width: 100%; height: auto; min-width: unset; }
    .sticky-title { position: static; margin-bottom: var(--spacing-lg); }
 }
 
 /* --- Interactive Structural Calculator --- */
-.calculator-wrapper { width: 100%; max-width: 800px; }
+/* FIX 4: Relative widths, no fixed pixel constraints */
+.interactive-tool {
+    padding: var(--spacing-xl) 5vw;
+}
+
+.calculator-wrapper { 
+    width: min(100%, 800px);
+}
+
 .calc-header { margin-bottom: var(--spacing-lg); text-align: center; }
+.calc-header h3 { font-size: clamp(1rem, 2.5vw, 1.6rem); }
+
+.calc-inputs {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+/* FIX 4: inputs flex-grow to fill available space; stack on mobile via wrap-mobile */
+.input-group {
+    flex: 1 1 clamp(140px, 30%, 280px);
+    min-width: 140px;
+}
 
 .input-group label { margin-bottom: 0.5rem; color: var(--text-secondary); display: block; }
 .input-group input {
@@ -229,6 +300,7 @@ h1, h2, h3, h4 {
     width: 100%;
     outline: none;
     transition: border-color 0.3s ease;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 .input-group input:focus { border-color: var(--accent-red); }
 
@@ -238,12 +310,13 @@ h1, h2, h3, h4 {
     border: 2px solid var(--accent-red);
     padding: 0.8rem 2rem;
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: clamp(0.85rem, 1.8vw, 1.1rem);
     text-transform: uppercase;
     letter-spacing: 1px;
     border-radius: 4px;
     transition: all 0.3s ease;
     align-self: flex-end;
+    white-space: nowrap;
 }
 .tech-btn:hover { background: var(--accent-red); color: var(--text-primary); }
 
@@ -254,13 +327,13 @@ h1, h2, h3, h4 {
     border-radius: 6px;
     border-left: 4px solid var(--text-secondary);
 }
-.result-display { color: var(--text-primary); font-size: 1.2rem; font-weight: 700; }
+.result-display { color: var(--text-primary); font-size: clamp(0.9rem, 2vw, 1.2rem); font-weight: 700; }
 
-/* --- Digital Total Station Cursor  --- */
+/* --- Digital Total Station Cursor --- */
 .cursor-line {
     position: fixed;
     background-color: var(--accent-red);
-[span_49](start_span)[span_49](end_span)    pointer-events: none; /* Prevents cursor from blocking clicks */
+    pointer-events: none; /* Prevents cursor from blocking clicks */
     z-index: 9998;
     opacity: 0.5;
 }
@@ -287,9 +360,17 @@ h1, h2, h3, h4 {
    .cursor-line, #hud-coordinates { display: none!important; }
 }
 
-/* --- SVG Blueprint Animation  --- */
-.svg-container { width: 100%; max-width: 40[span_59](start_span)[span_59](end_span)[span_62](start_span)[span_62](end_span)0px; margin: 2rem auto 0; }
+/* --- FIX 3: SVG Blueprint Animation — no hardcoded width/height, viewBox only --- */
+.svg-container { 
+    width: 100%; 
+    /* max-width uses a relative unit, not a fixed pixel value */
+    max-width: min(400px, 90%);
+    margin: 2rem auto 0; 
+}
+
 .blueprint-svg { 
+    /* width/height removed — browser scales via viewBox */
+    display: block;
     width: 100%; 
     height: auto; 
     stroke: var(--text-secondary); 
@@ -298,21 +379,22 @@ h1, h2, h3, h4 {
     stroke-linecap: round;
     stroke-linejoin: round;
 }
+
 .draw-path {
     stroke-dasharray: 1000; /* Will be overwritten by JS based on actual path length */
     stroke-dashoffset: 1000;
     transition: stroke-dashoffset 0.1s linear;
 }
 
-/* --- Background Canvas --- */
+/* --- FIX 4: Background Canvas — fully relative sizing --- */
 #canvas-container {
     position: fixed;
     top: 0;
     left: 0;
+    /* 100vw/100vh ensures it always fills the viewport regardless of device */
     width: 100vw;
     height: 100vh;
     z-index: -1;
     opacity: 0.4;
     pointer-events: none;
 }
-
