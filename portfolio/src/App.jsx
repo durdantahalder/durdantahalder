@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import p5 from 'p5';
 import BeamCalculator from './components/BeamCalculator';
 
